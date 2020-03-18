@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./car-info.style.scss";
+import "../car/car-info.style.scss";
 import { Location } from "./location";
 // import {Map, GoogleApiWrapper} from "google-maps-react";
 // import { CarInfo } from "./car-info";

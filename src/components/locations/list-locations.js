@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./car-info.style.css";
+import "./car-info.style.scss";
 import { Location } from "./location";
 // import {Map, GoogleApiWrapper} from "google-maps-react";
 // import { CarInfo } from "./car-info";
@@ -11,7 +11,10 @@ export const ListLocations = () => {
   const [carModel, setCarModel] = useState("");
   const [carLicense, setCarLicense] = useState("");
   const [carState, setCarState] = useState("");
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
 
+  // const proxyurl = "https://cors-anywhere.herokuapp.com/";
   const LOCATIONS_API =
     "https://rest.greenwheels.com/api/cities/%7BAAAAAAAAAAAAAAACAAAAAA==%7D/locations/cars";
 
@@ -36,6 +39,8 @@ export const ListLocations = () => {
       setCarLicense(info.license)
       setCarState(info.state)
     });
+    setLatitude(objectData.geoPoint.latitude);
+    setLongitude(objectData.geoPoint.longitude);
   }
 
   useEffect(() => {
@@ -54,10 +59,18 @@ export const ListLocations = () => {
       <button onClick={handleSubmit}>Show data for this location</button>
       <div>
         {show ?
-          <div>
-            <p>Car model: <span className="carData">{carModel}</span></p>
-            <p>License plate: <span className="carData">{carLicense}</span></p>
-            <p>Car State: <span className="carData">{carState}</span></p>
+          <div className="car">
+            <div>
+              <h2>Car info</h2>
+              <p>Car model: <span className="car-data">{carModel}</span></p>
+              <p>License plate: <span className="car-data">{carLicense}</span></p>
+              <p>Car State: <span className="car-data">{carState}</span></p>
+            </div>
+            <div>
+              <h2>Geo location</h2>
+              <p>Latitude: <span className="car-data">{latitude}</span></p>
+              <p>Longitude: <span className="car-data">{longitude}</span></p>
+            </div>
           </div>
           : null
         }

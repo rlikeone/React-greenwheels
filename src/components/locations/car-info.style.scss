@@ -1,0 +1,12 @@
+.car {
+  display: flex;
+  justify-content: center;
+
+  & div {
+    margin: 3.75rem;
+  }
+
+  &-data {
+    color: green;
+  }
+}

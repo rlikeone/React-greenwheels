@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../car/car-info.style.scss";
 import { Location } from "./location";
-// import {Map, GoogleApiWrapper} from "google-maps-react";
+import MapContainer from "./google-maps";
 // import { CarInfo } from "./car-info";
 
 export const ListLocations = () => {
@@ -23,25 +23,27 @@ export const ListLocations = () => {
       .then(res => res.json())
       .then(data => setLocations(data.locations))
       .catch(() => console.log("Can't fetch locations"));
-  }
+  };
 
-  const handleChange = (e) => {
-    const locationObject = locations.find(obj => obj.address === e.target.value);
+  const handleChange = e => {
+    const locationObject = locations.find(
+      obj => obj.address === e.target.value
+    );
     setObjectData(locationObject);
-  }
+  };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     setShow(true);
     console.log(objectData);
     objectData.cars.map(info => {
-      setCarModel(info.model)
-      setCarLicense(info.license)
-      setCarState(info.state)
+      setCarModel(info.model);
+      setCarLicense(info.license);
+      setCarState(info.state);
     });
     setLatitude(objectData.geoPoint.latitude);
     setLongitude(objectData.geoPoint.longitude);
-  }
+  };
 
   useEffect(() => {
     getLocations();
@@ -50,30 +52,51 @@ export const ListLocations = () => {
   return (
     <div>
       <label>Kies locatie: </label>
-      <select onChange={handleChange} >
+      <select onChange={handleChange}>
         <option></option>
         {locations.map(location => (
           <Location streetname={location.address} key={location.address} />
         ))}
       </select>
-      <button onClick={handleSubmit}>Show data for this location</button>
+      <button onClick={handleSubmit}>Toon data</button>
       <div>
-        {show ?
-          <div className="car">
-            <div>
-              <h2>Car info</h2>
-              <p>Car model: <span className="car-data">{carModel}</span></p>
-              <p>License plate: <span className="car-data">{carLicense}</span></p>
-              <p>Car State: <span className="car-data">{carState}</span></p>
+        {show ? (
+          <div>
+            <div className="car">
+              <div>
+                <h2>Car info</h2>
+                <p>
+                  Car model: <span className="car-data">{carModel}</span>
+                </p>
+                <p>
+                  License plate: <span className="car-data">{carLicense}</span>
+                </p>
+                <p>
+                  Car State: <span className="car-data">{carState}</span>
+                </p>
+              </div>
+              <div>
+                <h2>Greenwheels</h2>
+
+                {/* <p>
+                  Latitude: <span className="car-data">{latitude}</span>
+                </p>
+                <p>
+                  Longitude: <span className="car-data">{longitude}</span>
+                </p> */}
+
+                <img
+                  src="https://www.greenwheels.com/themes/mokum/img/models/up.png"
+                  alt=""
+                  width="40%"
+                />
+              </div>
             </div>
-            <div>
-              <h2>Geo location</h2>
-              <p>Latitude: <span className="car-data">{latitude}</span></p>
-              <p>Longitude: <span className="car-data">{longitude}</span></p>
+            <div className="maps">
+              <MapContainer lat={latitude} long={longitude} />
             </div>
           </div>
-          : null
-        }
+        ) : null}
       </div>
     </div>
   );

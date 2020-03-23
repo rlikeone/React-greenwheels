@@ -33,6 +33,13 @@ Make these locations visible in a list per city and make sure the user can disti
 ##### A functional approach with keeping the relationship and logic as simple as possible.
 
 - To meet the requirements for this functional approach I have used the: Hooks API (https://reactjs.org/docs/hooks-reference.html).
+- The <Location /> child component is being mapped out in parent <ListLocations /> which holds the state for all the data being rendered in the <option> tag, such as `address`.
+ - Other data bneing hold in the parent includes:
+ 
+ `Location`
+ `Car model`
+ `Car license`
+ `Car state`
 
 ### `Dependencies used`
 

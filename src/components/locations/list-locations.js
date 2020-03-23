@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../car/car-info.style.scss";
 import { Location } from "./location";
 import MapContainer from "./google-maps";
-// import { CarInfo } from "./car-info";
 
 export const ListLocations = () => {
   const [locations, setLocations] = useState([]);
@@ -13,16 +12,17 @@ export const ListLocations = () => {
   const [carState, setCarState] = useState("");
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
-
-  // const proxyurl = "https://cors-anywhere.herokuapp.com/";
   const LOCATIONS_API =
     "https://rest.greenwheels.com/api/cities/%7BAAAAAAAAAAAAAAACAAAAAA==%7D/locations/cars";
 
-  const getLocations = () => {
-    fetch(LOCATIONS_API)
-      .then(res => res.json())
-      .then(data => setLocations(data.locations))
-      .catch(() => console.log("Can't fetch locations"));
+  useEffect(() => {
+    getLocations();
+  });
+
+  const getLocations = async () => {
+    const data = await fetch(LOCATIONS_API);
+    const items = await data.json();
+    setLocations(items.locations);
   };
 
   const handleChange = e => {
@@ -34,8 +34,6 @@ export const ListLocations = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    setShow(true);
-    console.log(objectData);
     objectData.cars.map(info => {
       setCarModel(info.model);
       setCarLicense(info.license);
@@ -43,58 +41,52 @@ export const ListLocations = () => {
     });
     setLatitude(objectData.geoPoint.latitude);
     setLongitude(objectData.geoPoint.longitude);
+    setShow(true);
   };
 
-  useEffect(() => {
-    getLocations();
-  });
-
   return (
-    <div>
-      <label>Kies locatie: </label>
-      <select onChange={handleChange}>
-        <option></option>
-        {locations.map(location => (
-          <Location streetname={location.address} key={location.address} />
-        ))}
-      </select>
-      <button onClick={handleSubmit}>Toon data</button>
-      <div>
-        {show ? (
-          <div>
-            <div className="car">
-              <div>
-                <h2>Car info</h2>
-                <p>
-                  Car model: <span className="car-data">{carModel}</span>
-                </p>
-                <p>
-                  License plate: <span className="car-data">{carLicense}</span>
-                </p>
-                <p>
-                  Car State: <span className="car-data">{carState}</span>
-                </p>
-              </div>
-              <div>
-                <h2>Greenwheels</h2>
+    <div className="container">
+      <div className="item item-1">
+        <h1>Greenwheels Locator</h1>
+        <select onChange={handleChange}>
+          <option>Kies locatie...</option>
+          {locations.map(location => (
+            <Location streetname={location.address} key={location.address} />
+          ))}
+        </select>
+        <button onClick={handleSubmit}>Toon data</button>
+      </div>
 
-                {/* <p>
-                  Latitude: <span className="car-data">{latitude}</span>
-                </p>
-                <p>
-                  Longitude: <span className="car-data">{longitude}</span>
-                </p> */}
-
-                <img
-                  src="https://www.greenwheels.com/themes/mokum/img/models/up.png"
-                  alt="Greenwheels"
-                />
-              </div>
-            </div>
+      {show ? (
+        <React.Fragment>
+          <div className="item item-2">
+            <p>
+              Model: <span className="car-data">{carModel}</span>
+            </p>
+            <p>
+              Kenteken: <span className="car-data">{carLicense}</span>
+            </p>
+            <p>
+              Status: <span className="car-data">{carState}</span>
+            </p>
+          </div>
+          <div className="item item-3">
+            <img
+              src={
+                carModel === "VW Golf 7 Variant "
+                  ? "https://www.greenwheels.com/themes/mokum/img/models/station.png"
+                  : carModel === "VW up!"
+                  ? "https://www.greenwheels.com/themes/mokum/img/models/up.png"
+                  : "https://www.greenwheels.com/themes/mokum/img/models/caddy.png"
+              }
+              alt="Greenwheels"
+            />
+          </div>
+          <div className="item item-4">
             <MapContainer lat={latitude} long={longitude} />
           </div>
-        ) : null}
-      </div>
+        </React.Fragment>
+      ) : null}
     </div>
   );
 };

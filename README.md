@@ -27,3 +27,41 @@ Make these locations visible in a list per city and make sure the user can disti
 · Car model
 · License plate
 · Car State
+
+### `Approach`
+
+     - #### A functional approach with keeping the relationship and logic as simple as possible.
+            - To meet the requirements for this functional approach I have used the: Hooks API (https://reactjs.org/docs/hooks-reference.html).
+
+### `Dependencies used`
+
+```
+ "google-maps-react": "^2.0.2",
+  "node-sass": "^4.13.1",
+  "react": "^16.13.0",
+  "react-dom": "^16.13.0",
+  "react-scripts": "3.4.0"
+```
+
+## Available Scripts
+
+#### `npm start`
+
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
+
+#### `npm test`
+
+Runs tests specified in:
+
+```
+src/tests/locations/list-locations.test.js
+```
+
+## Results
+
+   - The user is able to see more data about the selected location and available car.
+   - The user is able to see the location pinnen on the Map using the Google Maps API.

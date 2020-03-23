@@ -87,14 +87,11 @@ export const ListLocations = () => {
 
                 <img
                   src="https://www.greenwheels.com/themes/mokum/img/models/up.png"
-                  alt=""
-                  width="40%"
+                  alt="Greenwheels"
                 />
               </div>
             </div>
-            <div className="maps">
-              <MapContainer lat={latitude} long={longitude} />
-            </div>
+            <MapContainer lat={latitude} long={longitude} />
           </div>
         ) : null}
       </div>

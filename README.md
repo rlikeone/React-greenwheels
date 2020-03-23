@@ -56,7 +56,7 @@ You will also see any lint errors in the console.
 
 #### `npm test`
 
-Runs tests specified in:
+- Runs tests specified in:
 
 ```
 src/tests/locations/list-locations.test.js

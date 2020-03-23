@@ -28,7 +28,7 @@ Make these locations visible in a list per city and make sure the user can disti
 · License plate
 · Car State
 
-### `Approach`
+## Approach
 
      - #### A functional approach with keeping the relationship and logic as simple as possible.
             - To meet the requirements for this functional approach I have used the: Hooks API (https://reactjs.org/docs/hooks-reference.html).

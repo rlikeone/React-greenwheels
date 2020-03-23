@@ -73,4 +73,4 @@ src/tests/locations/list-locations.test.js
 ## Results
 
    - The user is able to see more data about the selected location and available car.
-   - The user is able to see the location pinnen on the Map using the Google Maps API.
+   - The user is able to see the location pinned on the Map using the Google Maps API.

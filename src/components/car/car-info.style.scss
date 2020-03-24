@@ -1,57 +1,57 @@
-@mixin selectBtn {
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  font-weight: 400;
-  border-radius: 0.25rem;
-}
+// @mixin selectBtn {
+//   padding: 0.375rem 0.75rem;
+//   font-size: 1rem;
+//   font-weight: 400;
+//   border-radius: 0.25rem;
+// }
 
-.container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+// .container {
+//   display: flex;
+//   flex-flow: row wrap;
+//   justify-content: center;
 
-  & .item-2 {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
+//   & .item-2 {
+//     width: 100%;
+//     display: flex;
+//     justify-content: space-evenly;
 
-    & .car-data {
-      color: green;
-    }
-  }
+//     & .car-data {
+//       color: green;
+//     }
+//   }
 
-  & .item-1,
-  .item-3, .item-4 {
-    width: 100%;
-  }
+//   & .item-1,
+//   .item-3, .item-4 {
+//     width: 100%;
+//   }
 
-  & img {
-    width: 40%;
-  }
+//   & img {
+//     width: 40%;
+//   }
 
-  select {
-    @include selectBtn;
-    color: #495057;
-    background-color: #fff;
-    border: 1px solid #ced4da;
-  }
+//   select {
+//     @include selectBtn;
+//     color: #495057;
+//     background-color: #fff;
+//     border: 1px solid #ced4da;
+//   }
 
-  button {
-    @include selectBtn;
-    color: #fff;
-    background-color: lightskyblue;
-    border: 1px solid lightskyblue;
-    &:hover {
-      cursor: pointer;
-    }
-  }
-}
+//   button {
+//     @include selectBtn;
+//     color: #fff;
+//     background-color: lightskyblue;
+//     border: 1px solid lightskyblue;
+//     &:hover {
+//       cursor: pointer;
+//     }
+//   }
+// }
 
-@media (max-width: 767px) {
-  select {
-    width: 50vw;
-  }
-  button {
-    width: 35vw;
-  }
-}
+// @media (max-width: 767px) {
+//   select {
+//     width: 50vw;
+//   }
+//   button {
+//     width: 35vw;
+//   }
+// }

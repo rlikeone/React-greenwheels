@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "../car/car-info.style.scss";
 import { Location } from "./location";
 import MapContainer from "./google-maps";
 
@@ -17,7 +16,7 @@ export const ListLocations = () => {
 
   useEffect(() => {
     getLocations();
-  });
+  }, []);
 
   const getLocations = async () => {
     const data = await fetch(LOCATIONS_API);
@@ -46,7 +45,7 @@ export const ListLocations = () => {
 
   return (
     <div className="container">
-      <div className="item item-1">
+      <div className="item search">
         <h1>Greenwheels Locator</h1>
         <select onChange={handleChange}>
           <option>Kies locatie...</option>
@@ -59,7 +58,7 @@ export const ListLocations = () => {
 
       {show ? (
         <React.Fragment>
-          <div className="item item-2">
+          <div className="item carData">
             <p>
               Model: <span className="car-data">{carModel}</span>
             </p>
@@ -70,7 +69,7 @@ export const ListLocations = () => {
               Status: <span className="car-data">{carState}</span>
             </p>
           </div>
-          <div className="item item-3">
+          <div className="item carImage">
             <img
               src={
                 carModel === "VW Golf 7 Variant "
@@ -82,7 +81,7 @@ export const ListLocations = () => {
               alt="Greenwheels"
             />
           </div>
-          <div className="item item-4">
+          <div className="item map">
             <MapContainer lat={latitude} long={longitude} />
           </div>
         </React.Fragment>

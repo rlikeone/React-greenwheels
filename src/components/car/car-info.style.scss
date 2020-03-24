@@ -14,24 +14,15 @@
     width: 100%;
     display: flex;
     justify-content: space-evenly;
-    text-align: left;
 
     & .car-data {
       color: green;
     }
   }
 
-  & .item-3 {
-    width: 100%;
-  }
-
   & .item-1,
-  .item-4 {
+  .item-3, .item-4 {
     width: 100%;
-  }
-
-  &-data {
-    color: green;
   }
 
   & img {
